@@ -39,7 +39,7 @@ export const Route = createFileRoute("/products/granites/$slug")({
 
 function GraniteDetail() {
   const { granite } = Route.useLoaderData();
-  const Layout = LAYOUTS[granite.layout];
+  const Layout = LAYOUTS[granite.layout as keyof typeof LAYOUTS];
   return (
     <div className="bg-background">
       <Layout g={granite} />
