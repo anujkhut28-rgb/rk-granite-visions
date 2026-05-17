@@ -14,6 +14,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
 import { Route as ProductsMarblesRouteImport } from './routes/products/marbles'
+import { Route as ProductsGranitesRouteImport } from './routes/products/granites'
+import { Route as ProductsGranitesSlugRouteImport } from './routes/products/granites.$slug'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
@@ -40,47 +42,80 @@ const ProductsMarblesRoute = ProductsMarblesRouteImport.update({
   path: '/products/marbles',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsGranitesRoute = ProductsGranitesRouteImport.update({
+  id: '/products/granites',
+  path: '/products/granites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsGranitesSlugRoute = ProductsGranitesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProductsGranitesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products/granites': typeof ProductsGranitesRouteWithChildren
   '/products/marbles': typeof ProductsMarblesRoute
   '/products/': typeof ProductsIndexRoute
+  '/products/granites/$slug': typeof ProductsGranitesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products/granites': typeof ProductsGranitesRouteWithChildren
   '/products/marbles': typeof ProductsMarblesRoute
   '/products': typeof ProductsIndexRoute
+  '/products/granites/$slug': typeof ProductsGranitesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products/granites': typeof ProductsGranitesRouteWithChildren
   '/products/marbles': typeof ProductsMarblesRoute
   '/products/': typeof ProductsIndexRoute
+  '/products/granites/$slug': typeof ProductsGranitesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/products/marbles' | '/products/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/products/granites'
+    | '/products/marbles'
+    | '/products/'
+    | '/products/granites/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/products/marbles' | '/products'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/products/granites'
+    | '/products/marbles'
+    | '/products'
+    | '/products/granites/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/products/granites'
     | '/products/marbles'
     | '/products/'
+    | '/products/granites/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  ProductsGranitesRoute: typeof ProductsGranitesRouteWithChildren
   ProductsMarblesRoute: typeof ProductsMarblesRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
@@ -122,13 +157,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsMarblesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/granites': {
+      id: '/products/granites'
+      path: '/products/granites'
+      fullPath: '/products/granites'
+      preLoaderRoute: typeof ProductsGranitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/granites/$slug': {
+      id: '/products/granites/$slug'
+      path: '/$slug'
+      fullPath: '/products/granites/$slug'
+      preLoaderRoute: typeof ProductsGranitesSlugRouteImport
+      parentRoute: typeof ProductsGranitesRoute
+    }
   }
 }
+
+interface ProductsGranitesRouteChildren {
+  ProductsGranitesSlugRoute: typeof ProductsGranitesSlugRoute
+}
+
+const ProductsGranitesRouteChildren: ProductsGranitesRouteChildren = {
+  ProductsGranitesSlugRoute: ProductsGranitesSlugRoute,
+}
+
+const ProductsGranitesRouteWithChildren =
+  ProductsGranitesRoute._addFileChildren(ProductsGranitesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  ProductsGranitesRoute: ProductsGranitesRouteWithChildren,
   ProductsMarblesRoute: ProductsMarblesRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
