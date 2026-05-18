@@ -61,13 +61,13 @@ const LAYOUTS = {
 function EditorialLayout({ g }: { g: Granite }) {
   return (
     <>
-      <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
-        <img src={g.project} alt={g.name} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${g.accentHex}cc 0%, transparent 60%)` }} />
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-16 lg:px-12">
+      <section className="relative h-[60vh] min-h-[420px] overflow-hidden md:h-[90vh] md:min-h-[600px]">
+        <img src={g.project} alt={`${g.name} project`} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${g.accentHex}aa 0%, ${g.accentHex}33 35%, transparent 65%)` }} />
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-8 md:pb-16 lg:px-12">
           <Crumbs g={g} dark />
-          <h1 className="mt-6 font-serif text-6xl text-background md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
-          <p className="mt-4 max-w-xl text-lg italic text-background/80 font-serif">{g.signature}</p>
+          <h1 className="mt-4 font-serif text-4xl text-background sm:text-6xl md:mt-6 md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
+          <p className="mt-3 max-w-xl text-sm italic text-background/85 font-serif md:mt-4 md:text-lg">{g.signature}</p>
         </div>
       </section>
 
@@ -85,8 +85,10 @@ function EditorialLayout({ g }: { g: Granite }) {
             </div>
           </div>
           <div className="md:col-span-7 md:col-start-6">
-            <p className="font-serif text-3xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
-            <p className="mt-8 text-muted-foreground leading-relaxed">{g.story[1]}</p>
+            <p className="font-serif text-2xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
+            <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
+              {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+            </div>
           </div>
         </div>
       </section>
