@@ -78,9 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Radhe Krishna Granite & BuildCon — manufacturer and exporter of premium granite and marble. Crafting excellence in natural stone." },
       { name: "author", content: "RKGB" },
       { property: "og:title", content: "RKGB — Premium Granite & Marble Solutions" },
-      { property: "og:description", content: "Crafting excellence in natural stone." },
+      { property: "og:description", content: "Radhe Krishna Granite & BuildCon — manufacturer and exporter of premium granite and marble. Crafting excellence in natural stone." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "RKGB — Premium Granite & Marble Solutions" },
+      { name: "twitter:description", content: "Radhe Krishna Granite & BuildCon — manufacturer and exporter of premium granite and marble. Crafting excellence in natural stone." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d616d665-7a2f-4a66-af22-93919c644607/id-preview-896529fe--a580b2ef-8e83-4a9f-a2d9-74a4e136ff0c.lovable.app-1778992407508.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d616d665-7a2f-4a66-af22-93919c644607/id-preview-896529fe--a580b2ef-8e83-4a9f-a2d9-74a4e136ff0c.lovable.app-1778992407508.png" },
     ],
     links: [
       {
