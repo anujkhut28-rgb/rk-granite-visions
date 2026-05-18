@@ -284,11 +284,11 @@ function MagazineLayout({ g }: { g: Granite }) {
           <Crumbs g={g} />
           <div className="mt-12 grid gap-8 md:grid-cols-12">
             <div className="md:col-span-5">
-              <div className="font-serif text-[10rem] leading-none text-gold/30 md:text-[14rem]">{g.name.charAt(0)}</div>
+              <div className="font-serif text-[7rem] leading-none text-gold/30 sm:text-[10rem] md:text-[14rem]">{g.name.charAt(0)}</div>
             </div>
             <div className="md:col-span-7 self-end">
               <div className="text-xs uppercase tracking-[0.3em] text-gold">Issue 0{granites.findIndex(x => x.slug === g.slug) + 1}</div>
-              <h1 className="mt-3 font-serif text-5xl text-ink md:text-7xl text-balance leading-[0.95]">{g.name}</h1>
+              <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl md:text-7xl text-balance leading-[0.95]">{g.name}</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">{g.shortDesc}</p>
             </div>
           </div>
@@ -298,7 +298,7 @@ function MagazineLayout({ g }: { g: Granite }) {
       <section>
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="relative aspect-[21/9] overflow-hidden">
-            <img src={g.slab} alt="" className="h-full w-full object-cover" />
+            <img src={g.slab} alt={`${g.name} texture`} className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
@@ -310,13 +310,15 @@ function MagazineLayout({ g }: { g: Granite }) {
             <div><div className="text-xs uppercase tracking-widest text-gold">Geology</div><div className="mt-2 text-sm text-ink">{g.formation}</div></div>
             <div><div className="text-xs uppercase tracking-widest text-gold">Signature</div><div className="mt-2 font-serif italic text-lg text-ink">{g.signature}</div></div>
           </div>
-          <div className="md:col-span-6 md:col-start-5 columns-1 gap-8">
+          <div className="md:col-span-6 md:col-start-5">
             <p className="font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">{g.story[1]}</p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">Inspired by {g.inspiration}</p>
+            <div className="mt-6 space-y-5 text-muted-foreground leading-relaxed">
+              {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+              <p className="italic">Inspired by {g.inspiration}</p>
+            </div>
           </div>
           <div className="md:col-span-2 md:col-start-11">
-            <img src={g.project} alt="" className="aspect-[2/3] w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[2/3] w-full object-cover" />
           </div>
         </div>
       </section>
