@@ -237,8 +237,8 @@ function VerticalLayout({ g }: { g: Granite }) {
         <div className="mx-auto max-w-5xl px-6 text-center lg:px-12">
           <Crumbs g={g} center />
           <div className="mt-10 text-xs uppercase tracking-[0.4em] text-gold">{g.tagline}</div>
-          <h1 className="mt-6 font-serif text-7xl text-ink md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
-          <p className="mx-auto mt-8 max-w-xl font-serif text-2xl italic text-muted-foreground">{g.signature}</p>
+          <h1 className="mt-6 font-serif text-5xl text-ink sm:text-7xl md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
+          <p className="mx-auto mt-6 max-w-xl font-serif text-xl italic text-muted-foreground md:mt-8 md:text-2xl">{g.signature}</p>
         </div>
       </section>
 
@@ -253,15 +253,17 @@ function VerticalLayout({ g }: { g: Granite }) {
 
       <section className="py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="font-serif text-3xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
-          <p className="mx-auto mt-10 max-w-2xl text-muted-foreground leading-relaxed">{g.story[1]}</p>
+          <p className="font-serif text-2xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
+          <div className="mx-auto mt-10 max-w-2xl space-y-5 text-left text-muted-foreground leading-relaxed">
+            {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+          </div>
         </div>
       </section>
 
       <section className="relative">
         <div className="mx-auto max-w-6xl px-6">
           <div className="relative aspect-[16/9] overflow-hidden">
-            <img src={g.project} alt="" className="h-full w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
