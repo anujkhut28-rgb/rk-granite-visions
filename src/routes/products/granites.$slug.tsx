@@ -121,20 +121,20 @@ function EditorialLayout({ g }: { g: Granite }) {
 function SplitLayout({ g }: { g: Granite }) {
   return (
     <>
-      <section className="grid min-h-screen md:grid-cols-2">
-        <div className="relative flex flex-col justify-between p-10 lg:p-16" style={{ background: g.accentHex, color: g.accentHex.toLowerCase() === "#cfc7b8" ? "#1a1a1a" : "#fff" }}>
+      <section className="grid md:min-h-screen md:grid-cols-2">
+        <div className="relative order-2 flex flex-col justify-between gap-10 p-8 sm:p-10 md:order-1 lg:p-16" style={{ background: g.accentHex, color: g.accentHex.toLowerCase() === "#cfc7b8" ? "#1a1a1a" : "#fff" }}>
           <Crumbs g={g} dark={g.accentHex.toLowerCase() !== "#cfc7b8"} />
           <div>
             <div className="text-xs uppercase tracking-[0.3em] opacity-70">{g.tagline}</div>
-            <h1 className="mt-6 font-serif text-6xl md:text-8xl leading-[0.9]">{g.name}</h1>
-            <p className="mt-8 max-w-md font-serif text-2xl italic opacity-90">{g.signature}</p>
+            <h1 className="mt-4 font-serif text-5xl leading-[0.9] sm:text-6xl md:mt-6 md:text-8xl">{g.name}</h1>
+            <p className="mt-6 max-w-md font-serif text-xl italic opacity-90 md:mt-8 md:text-2xl">{g.signature}</p>
           </div>
           <div className="grid grid-cols-2 gap-6 border-t border-current/20 pt-8 text-sm">
             <div><div className="opacity-60 text-xs uppercase tracking-widest">Origin</div><div className="mt-1 font-serif text-lg">{g.origin}</div></div>
             <div><div className="opacity-60 text-xs uppercase tracking-widest">Hardness</div><div className="mt-1 font-serif text-lg">{g.specs[3]?.value ?? "—"}</div></div>
           </div>
         </div>
-        <div className="relative min-h-[60vh]">
+        <div className="relative order-1 aspect-[4/3] md:order-2 md:aspect-auto md:min-h-[60vh]">
           <img src={g.slab} alt={`${g.name} slab`} className="absolute inset-0 h-full w-full object-cover" />
         </div>
       </section>
@@ -143,7 +143,7 @@ function SplitLayout({ g }: { g: Granite }) {
         <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-3 lg:px-12">
           <div className="md:col-span-1"><Eyebrow>Formation</Eyebrow><p className="mt-4 text-sm text-muted-foreground">{g.formation}</p></div>
           <div className="md:col-span-2">
-            {g.story.map((p, i) => <p key={i} className={i === 0 ? "font-serif text-3xl text-ink leading-snug text-balance" : "mt-6 text-muted-foreground leading-relaxed"}>{p}</p>)}
+            {g.story.map((p, i) => <p key={i} className={i === 0 ? "font-serif text-2xl text-ink leading-snug text-balance md:text-3xl" : "mt-5 text-muted-foreground leading-relaxed"}>{p}</p>)}
           </div>
         </div>
       </section>
@@ -152,7 +152,7 @@ function SplitLayout({ g }: { g: Granite }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <Eyebrow>In Situ</Eyebrow>
           <div className="mt-8 grid gap-8 md:grid-cols-2">
-            <img src={g.project} alt="" className="aspect-[4/3] w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[4/3] w-full object-cover" />
             <div className="self-end">
               <h3 className="font-serif text-4xl">{g.signature}</h3>
               <ChipRow label="Finishes" items={g.finishes} />
