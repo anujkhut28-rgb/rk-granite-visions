@@ -61,13 +61,13 @@ const LAYOUTS = {
 function EditorialLayout({ g }: { g: Granite }) {
   return (
     <>
-      <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
-        <img src={g.project} alt={g.name} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${g.accentHex}cc 0%, transparent 60%)` }} />
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-16 lg:px-12">
+      <section className="relative h-[60vh] min-h-[420px] overflow-hidden md:h-[90vh] md:min-h-[600px]">
+        <img src={g.project} alt={`${g.name} project`} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${g.accentHex}aa 0%, ${g.accentHex}33 35%, transparent 65%)` }} />
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-8 md:pb-16 lg:px-12">
           <Crumbs g={g} dark />
-          <h1 className="mt-6 font-serif text-6xl text-background md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
-          <p className="mt-4 max-w-xl text-lg italic text-background/80 font-serif">{g.signature}</p>
+          <h1 className="mt-4 font-serif text-4xl text-background sm:text-6xl md:mt-6 md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
+          <p className="mt-3 max-w-xl text-sm italic text-background/85 font-serif md:mt-4 md:text-lg">{g.signature}</p>
         </div>
       </section>
 
@@ -85,8 +85,10 @@ function EditorialLayout({ g }: { g: Granite }) {
             </div>
           </div>
           <div className="md:col-span-7 md:col-start-6">
-            <p className="font-serif text-3xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
-            <p className="mt-8 text-muted-foreground leading-relaxed">{g.story[1]}</p>
+            <p className="font-serif text-2xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
+            <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
+              {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+            </div>
           </div>
         </div>
       </section>
@@ -119,20 +121,20 @@ function EditorialLayout({ g }: { g: Granite }) {
 function SplitLayout({ g }: { g: Granite }) {
   return (
     <>
-      <section className="grid min-h-screen md:grid-cols-2">
-        <div className="relative flex flex-col justify-between p-10 lg:p-16" style={{ background: g.accentHex, color: g.accentHex.toLowerCase() === "#cfc7b8" ? "#1a1a1a" : "#fff" }}>
+      <section className="grid md:min-h-screen md:grid-cols-2">
+        <div className="relative order-2 flex flex-col justify-between gap-10 p-8 sm:p-10 md:order-1 lg:p-16" style={{ background: g.accentHex, color: g.accentHex.toLowerCase() === "#cfc7b8" ? "#1a1a1a" : "#fff" }}>
           <Crumbs g={g} dark={g.accentHex.toLowerCase() !== "#cfc7b8"} />
           <div>
             <div className="text-xs uppercase tracking-[0.3em] opacity-70">{g.tagline}</div>
-            <h1 className="mt-6 font-serif text-6xl md:text-8xl leading-[0.9]">{g.name}</h1>
-            <p className="mt-8 max-w-md font-serif text-2xl italic opacity-90">{g.signature}</p>
+            <h1 className="mt-4 font-serif text-5xl leading-[0.9] sm:text-6xl md:mt-6 md:text-8xl">{g.name}</h1>
+            <p className="mt-6 max-w-md font-serif text-xl italic opacity-90 md:mt-8 md:text-2xl">{g.signature}</p>
           </div>
           <div className="grid grid-cols-2 gap-6 border-t border-current/20 pt-8 text-sm">
             <div><div className="opacity-60 text-xs uppercase tracking-widest">Origin</div><div className="mt-1 font-serif text-lg">{g.origin}</div></div>
             <div><div className="opacity-60 text-xs uppercase tracking-widest">Hardness</div><div className="mt-1 font-serif text-lg">{g.specs[3]?.value ?? "—"}</div></div>
           </div>
         </div>
-        <div className="relative min-h-[60vh]">
+        <div className="relative order-1 aspect-[4/3] md:order-2 md:aspect-auto md:min-h-[60vh]">
           <img src={g.slab} alt={`${g.name} slab`} className="absolute inset-0 h-full w-full object-cover" />
         </div>
       </section>
@@ -141,7 +143,7 @@ function SplitLayout({ g }: { g: Granite }) {
         <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-3 lg:px-12">
           <div className="md:col-span-1"><Eyebrow>Formation</Eyebrow><p className="mt-4 text-sm text-muted-foreground">{g.formation}</p></div>
           <div className="md:col-span-2">
-            {g.story.map((p, i) => <p key={i} className={i === 0 ? "font-serif text-3xl text-ink leading-snug text-balance" : "mt-6 text-muted-foreground leading-relaxed"}>{p}</p>)}
+            {g.story.map((p, i) => <p key={i} className={i === 0 ? "font-serif text-2xl text-ink leading-snug text-balance md:text-3xl" : "mt-5 text-muted-foreground leading-relaxed"}>{p}</p>)}
           </div>
         </div>
       </section>
@@ -150,7 +152,7 @@ function SplitLayout({ g }: { g: Granite }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <Eyebrow>In Situ</Eyebrow>
           <div className="mt-8 grid gap-8 md:grid-cols-2">
-            <img src={g.project} alt="" className="aspect-[4/3] w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[4/3] w-full object-cover" />
             <div className="self-end">
               <h3 className="font-serif text-4xl">{g.signature}</h3>
               <ChipRow label="Finishes" items={g.finishes} />
@@ -176,7 +178,7 @@ function GalleryLayout({ g }: { g: Granite }) {
           <div className="mt-10 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-7">
               <div className="text-xs uppercase tracking-[0.3em] text-gold">{g.tagline}</div>
-              <h1 className="mt-4 font-serif text-6xl text-ink md:text-8xl text-balance leading-[0.95]">{g.name}</h1>
+              <h1 className="mt-4 font-serif text-5xl text-ink sm:text-6xl md:text-8xl text-balance leading-[0.95]">{g.name}</h1>
             </div>
             <p className="md:col-span-4 md:col-start-9 self-end text-muted-foreground">{g.shortDesc}</p>
           </div>
@@ -185,21 +187,24 @@ function GalleryLayout({ g }: { g: Granite }) {
 
       <section className="pb-20">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-4 px-6 lg:px-12">
-          <img src={g.slab} alt="" className="col-span-12 aspect-[21/9] w-full object-cover md:col-span-8" />
+          <img src={g.slab} alt={`${g.name} slab`} className="col-span-12 aspect-[21/9] w-full object-cover md:col-span-8" />
           <div className="col-span-12 grid grid-rows-2 gap-4 md:col-span-4">
-            <img src={g.project} alt="" className="h-full w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[4/3] h-full w-full object-cover md:aspect-auto" />
             <div className="flex flex-col justify-center p-6" style={{ background: g.accentHex, color: "#fff" }}>
               <div className="text-xs uppercase tracking-widest opacity-70">Edition</div>
               <div className="mt-2 font-serif text-3xl">{g.specs.find(s => s.label === "Edition")?.value ?? "Open"}</div>
               <div className="mt-4 text-sm opacity-90 italic font-serif">{g.signature}</div>
             </div>
           </div>
-          <img src={g.project} alt="" className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
-          <img src={g.slab} alt="" className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
+          <img src={g.project} alt={`${g.name} application`} className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
+          <img src={g.slab} alt={`${g.name} texture`} className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
           <div className="col-span-12 flex items-end md:col-span-6">
             <div>
               <Eyebrow>The narrative</Eyebrow>
-              <p className="mt-4 font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
+              <div className="mt-4 space-y-4">
+                <p className="font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
+                {g.story.slice(1, 4).map((p, i) => <p key={i} className="text-muted-foreground leading-relaxed">{p}</p>)}
+              </div>
             </div>
           </div>
         </div>
@@ -211,7 +216,9 @@ function GalleryLayout({ g }: { g: Granite }) {
             <Eyebrow>Quarry & Formation</Eyebrow>
             <h3 className="mt-4 font-serif text-3xl text-ink">{g.origin}</h3>
             <p className="mt-3 text-sm text-muted-foreground">{g.formation}</p>
-            <p className="mt-6 text-muted-foreground">{g.story[1]}</p>
+            <div className="mt-6 space-y-4 text-muted-foreground">
+              {g.story.slice(4).map((p, i) => <p key={i}>{p}</p>)}
+            </div>
           </div>
           <SpecsAside g={g} />
         </div>
@@ -230,8 +237,8 @@ function VerticalLayout({ g }: { g: Granite }) {
         <div className="mx-auto max-w-5xl px-6 text-center lg:px-12">
           <Crumbs g={g} center />
           <div className="mt-10 text-xs uppercase tracking-[0.4em] text-gold">{g.tagline}</div>
-          <h1 className="mt-6 font-serif text-7xl text-ink md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
-          <p className="mx-auto mt-8 max-w-xl font-serif text-2xl italic text-muted-foreground">{g.signature}</p>
+          <h1 className="mt-6 font-serif text-5xl text-ink sm:text-7xl md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
+          <p className="mx-auto mt-6 max-w-xl font-serif text-xl italic text-muted-foreground md:mt-8 md:text-2xl">{g.signature}</p>
         </div>
       </section>
 
@@ -246,15 +253,17 @@ function VerticalLayout({ g }: { g: Granite }) {
 
       <section className="py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="font-serif text-3xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
-          <p className="mx-auto mt-10 max-w-2xl text-muted-foreground leading-relaxed">{g.story[1]}</p>
+          <p className="font-serif text-2xl text-ink leading-snug text-balance md:text-4xl">{g.story[0]}</p>
+          <div className="mx-auto mt-10 max-w-2xl space-y-5 text-left text-muted-foreground leading-relaxed">
+            {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+          </div>
         </div>
       </section>
 
       <section className="relative">
         <div className="mx-auto max-w-6xl px-6">
           <div className="relative aspect-[16/9] overflow-hidden">
-            <img src={g.project} alt="" className="h-full w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
@@ -275,11 +284,11 @@ function MagazineLayout({ g }: { g: Granite }) {
           <Crumbs g={g} />
           <div className="mt-12 grid gap-8 md:grid-cols-12">
             <div className="md:col-span-5">
-              <div className="font-serif text-[10rem] leading-none text-gold/30 md:text-[14rem]">{g.name.charAt(0)}</div>
+              <div className="font-serif text-[7rem] leading-none text-gold/30 sm:text-[10rem] md:text-[14rem]">{g.name.charAt(0)}</div>
             </div>
             <div className="md:col-span-7 self-end">
               <div className="text-xs uppercase tracking-[0.3em] text-gold">Issue 0{granites.findIndex(x => x.slug === g.slug) + 1}</div>
-              <h1 className="mt-3 font-serif text-5xl text-ink md:text-7xl text-balance leading-[0.95]">{g.name}</h1>
+              <h1 className="mt-3 font-serif text-4xl text-ink sm:text-5xl md:text-7xl text-balance leading-[0.95]">{g.name}</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">{g.shortDesc}</p>
             </div>
           </div>
@@ -289,7 +298,7 @@ function MagazineLayout({ g }: { g: Granite }) {
       <section>
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="relative aspect-[21/9] overflow-hidden">
-            <img src={g.slab} alt="" className="h-full w-full object-cover" />
+            <img src={g.slab} alt={`${g.name} texture`} className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
@@ -301,13 +310,15 @@ function MagazineLayout({ g }: { g: Granite }) {
             <div><div className="text-xs uppercase tracking-widest text-gold">Geology</div><div className="mt-2 text-sm text-ink">{g.formation}</div></div>
             <div><div className="text-xs uppercase tracking-widest text-gold">Signature</div><div className="mt-2 font-serif italic text-lg text-ink">{g.signature}</div></div>
           </div>
-          <div className="md:col-span-6 md:col-start-5 columns-1 gap-8">
+          <div className="md:col-span-6 md:col-start-5">
             <p className="font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">{g.story[1]}</p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">Inspired by {g.inspiration}</p>
+            <div className="mt-6 space-y-5 text-muted-foreground leading-relaxed">
+              {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
+              <p className="italic">Inspired by {g.inspiration}</p>
+            </div>
           </div>
           <div className="md:col-span-2 md:col-start-11">
-            <img src={g.project} alt="" className="aspect-[2/3] w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[2/3] w-full object-cover" />
           </div>
         </div>
       </section>
