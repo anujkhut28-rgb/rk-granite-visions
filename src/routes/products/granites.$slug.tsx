@@ -178,7 +178,7 @@ function GalleryLayout({ g }: { g: Granite }) {
           <div className="mt-10 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-7">
               <div className="text-xs uppercase tracking-[0.3em] text-gold">{g.tagline}</div>
-              <h1 className="mt-4 font-serif text-6xl text-ink md:text-8xl text-balance leading-[0.95]">{g.name}</h1>
+              <h1 className="mt-4 font-serif text-5xl text-ink sm:text-6xl md:text-8xl text-balance leading-[0.95]">{g.name}</h1>
             </div>
             <p className="md:col-span-4 md:col-start-9 self-end text-muted-foreground">{g.shortDesc}</p>
           </div>
@@ -187,21 +187,24 @@ function GalleryLayout({ g }: { g: Granite }) {
 
       <section className="pb-20">
         <div className="mx-auto grid max-w-7xl grid-cols-12 gap-4 px-6 lg:px-12">
-          <img src={g.slab} alt="" className="col-span-12 aspect-[21/9] w-full object-cover md:col-span-8" />
+          <img src={g.slab} alt={`${g.name} slab`} className="col-span-12 aspect-[21/9] w-full object-cover md:col-span-8" />
           <div className="col-span-12 grid grid-rows-2 gap-4 md:col-span-4">
-            <img src={g.project} alt="" className="h-full w-full object-cover" />
+            <img src={g.project} alt={`${g.name} project`} className="aspect-[4/3] h-full w-full object-cover md:aspect-auto" />
             <div className="flex flex-col justify-center p-6" style={{ background: g.accentHex, color: "#fff" }}>
               <div className="text-xs uppercase tracking-widest opacity-70">Edition</div>
               <div className="mt-2 font-serif text-3xl">{g.specs.find(s => s.label === "Edition")?.value ?? "Open"}</div>
               <div className="mt-4 text-sm opacity-90 italic font-serif">{g.signature}</div>
             </div>
           </div>
-          <img src={g.project} alt="" className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
-          <img src={g.slab} alt="" className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
+          <img src={g.project} alt={`${g.name} application`} className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
+          <img src={g.slab} alt={`${g.name} texture`} className="col-span-6 aspect-square w-full object-cover md:col-span-3" />
           <div className="col-span-12 flex items-end md:col-span-6">
             <div>
               <Eyebrow>The narrative</Eyebrow>
-              <p className="mt-4 font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
+              <div className="mt-4 space-y-4">
+                <p className="font-serif text-2xl text-ink leading-snug">{g.story[0]}</p>
+                {g.story.slice(1, 4).map((p, i) => <p key={i} className="text-muted-foreground leading-relaxed">{p}</p>)}
+              </div>
             </div>
           </div>
         </div>
@@ -213,7 +216,9 @@ function GalleryLayout({ g }: { g: Granite }) {
             <Eyebrow>Quarry & Formation</Eyebrow>
             <h3 className="mt-4 font-serif text-3xl text-ink">{g.origin}</h3>
             <p className="mt-3 text-sm text-muted-foreground">{g.formation}</p>
-            <p className="mt-6 text-muted-foreground">{g.story[1]}</p>
+            <div className="mt-6 space-y-4 text-muted-foreground">
+              {g.story.slice(4).map((p, i) => <p key={i}>{p}</p>)}
+            </div>
           </div>
           <SpecsAside g={g} />
         </div>
