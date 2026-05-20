@@ -38,7 +38,7 @@ export const Route = createFileRoute("/products/granites/$slug")({
 });
 
 function GraniteDetail() {
-  const { granite: g } = Route.useLoaderData();
+  const { granite: g } = Route.useLoaderData() as { granite: Granite };
   const idx = granites.findIndex((x) => x.slug === g.slug);
   const prev = granites[(idx - 1 + granites.length) % granites.length];
   const next = granites[(idx + 1) % granites.length];
