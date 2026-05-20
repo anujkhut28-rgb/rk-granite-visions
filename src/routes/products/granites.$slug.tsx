@@ -61,13 +61,24 @@ const LAYOUTS = {
 function EditorialLayout({ g }: { g: Granite }) {
   return (
     <>
-      <section className="relative h-[60vh] min-h-[420px] overflow-hidden md:h-[90vh] md:min-h-[600px]">
-        <img src={g.project} alt={`${g.name} project`} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${g.accentHex}aa 0%, ${g.accentHex}33 35%, transparent 65%)` }} />
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-8 md:pb-16 lg:px-12">
-          <Crumbs g={g} dark />
-          <h1 className="mt-4 font-serif text-4xl text-background sm:text-6xl md:mt-6 md:text-9xl text-balance leading-[0.9]">{g.name}</h1>
-          <p className="mt-3 max-w-xl text-sm italic text-background/85 font-serif md:mt-4 md:text-lg">{g.signature}</p>
+      <section className="pt-28 pb-10 md:pt-32 md:pb-14">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <Crumbs g={g} />
+          <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <div className="text-xs uppercase tracking-[0.3em] text-gold">{g.tagline}</div>
+              <h1 className="mt-4 font-serif text-5xl text-ink sm:text-6xl md:text-8xl lg:text-9xl text-balance leading-[0.9]">{g.name}</h1>
+            </div>
+            <p className="max-w-xl font-serif text-lg italic text-muted-foreground md:col-span-4 md:col-start-9 md:text-2xl">{g.signature}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden px-6 lg:px-12">
+        <div className="mx-auto max-w-7xl overflow-hidden">
+          <div className="aspect-[4/5] sm:aspect-[16/10] md:h-[78vh] md:min-h-[560px]">
+            <img src={g.project} alt={`${g.name} project`} className="h-full w-full object-cover" />
+          </div>
         </div>
       </section>
 
@@ -408,12 +419,13 @@ function ApplicationGrid({ g }: { g: Granite }) {
         <h2 className="mt-4 font-serif text-4xl text-ink md:text-5xl">Applications.</h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {g.applications.map((a, i) => (
-            <div key={a} className="group relative aspect-[4/5] overflow-hidden">
-              <img src={i % 2 === 0 ? g.project : g.slab} alt={a} className="h-full w-full object-cover transition duration-1000 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-background">
+            <div key={a} className="group">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img src={i % 2 === 0 ? g.project : g.slab} alt={a} className="h-full w-full object-cover transition duration-1000 group-hover:scale-110" />
+              </div>
+              <div className="border-x border-b border-ink/10 bg-background px-5 py-4">
                 <div className="text-xs uppercase tracking-widest text-gold">0{i + 1}</div>
-                <div className="mt-1 font-serif text-xl">{a}</div>
+                <div className="mt-1 font-serif text-xl text-ink">{a}</div>
               </div>
             </div>
           ))}
