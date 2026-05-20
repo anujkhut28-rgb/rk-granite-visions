@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { QuoteCTA } from "@/components/site/QuoteCTA";
 import { granites } from "@/data/granites";
@@ -17,6 +17,12 @@ export const Route = createFileRoute("/products/granites")({
 });
 
 function GranitesCatalog() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  if (pathname.startsWith("/products/granites/")) {
+    return <Outlet />;
+  }
+
   const hero = granites[0];
   return (
     <div className="bg-background">
