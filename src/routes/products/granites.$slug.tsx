@@ -46,8 +46,8 @@ function GraniteDetail() {
   return (
     <div className="bg-background">
       {/* ── Breadcrumb ── */}
-      <div className="border-b border-ink/10 pt-24">
-        <div className="mx-auto max-w-7xl px-6 py-5 lg:px-12">
+      <div className="border-b border-ink/10 pt-20">
+        <div className="mx-auto max-w-7xl px-6 py-3 lg:px-12">
           <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
             <Link to="/products" className="hover:text-gold">Products</Link>
             <span>/</span>
@@ -59,24 +59,24 @@ function GraniteDetail() {
       </div>
 
       {/* ── Hero ── */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid gap-10 md:grid-cols-12 md:items-center lg:gap-16">
+          <div className="grid gap-8 md:grid-cols-12 md:items-center lg:gap-12">
             <div className="md:col-span-6">
               <div className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold">
                 <span className="h-px w-8 bg-gold" />
                 {g.tagline}
               </div>
-              <h1 className="mt-5 font-serif text-4xl leading-[1.05] text-ink text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="mt-4 font-serif text-4xl leading-[1.05] text-ink text-balance sm:text-5xl md:text-6xl">
                 {g.name}
               </h1>
-              <p className="mt-6 max-w-lg font-serif text-lg italic text-muted-foreground md:text-xl">
+              <p className="mt-4 max-w-lg font-serif text-lg italic text-muted-foreground">
                 {g.signature}
               </p>
-              <p className="mt-6 max-w-lg leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
                 {g.shortDesc}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <span
                   className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-widest text-ink"
                   style={{ background: `${g.accentHex}1f`, border: `1px solid ${g.accentHex}40` }}
@@ -91,7 +91,7 @@ function GraniteDetail() {
             </div>
             <div className="md:col-span-6">
               <div className="relative overflow-hidden rounded-sm shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)]">
-                <div className="aspect-[4/5] sm:aspect-[5/6]">
+                <div className="aspect-[4/3] md:aspect-[5/6]">
                   <img src={g.slab} alt={`${g.name} slab`} className="h-full w-full object-cover" />
                 </div>
               </div>
@@ -104,22 +104,22 @@ function GraniteDetail() {
       <section className="border-y border-ink/10 bg-beige/50">
         <div className="mx-auto grid max-w-7xl grid-cols-2 divide-ink/10 px-6 sm:grid-cols-4 sm:divide-x lg:px-12">
           {g.specs.slice(0, 4).map((s) => (
-            <div key={s.label} className="px-2 py-6 sm:px-6 sm:py-8">
+            <div key={s.label} className="px-2 py-4 sm:px-6 sm:py-5">
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{s.label}</div>
-              <div className="mt-2 font-serif text-xl text-ink md:text-2xl">{s.value}</div>
+              <div className="mt-1 font-serif text-lg text-ink md:text-xl">{s.value}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Narrative ── */}
-      <section className="py-20 md:py-28">
+      <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid gap-12 md:grid-cols-12 lg:gap-20">
+          <div className="grid gap-8 md:grid-cols-12 lg:gap-12">
             <div className="md:col-span-4">
               <Eyebrow>The Stone</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">A study in {g.tagline.toLowerCase()}.</h2>
-              <div className="mt-8 space-y-5 text-sm">
+              <h2 className="mt-3 font-serif text-3xl text-ink md:text-4xl">A study in {g.tagline.toLowerCase()}.</h2>
+              <div className="mt-6 space-y-4 text-sm">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-gold">Quarry</div>
                   <div className="mt-1 font-serif text-lg text-ink">{g.origin}</div>
@@ -131,10 +131,10 @@ function GraniteDetail() {
               </div>
             </div>
             <div className="md:col-span-7 md:col-start-6">
-              <p className="font-serif text-2xl leading-snug text-ink text-balance md:text-3xl">
+              <p className="font-serif text-xl leading-snug text-ink text-balance md:text-2xl">
                 {g.story[0]}
               </p>
-              <div className="mt-8 space-y-5 leading-relaxed text-muted-foreground">
+              <div className="mt-5 space-y-4 leading-relaxed text-muted-foreground">
                 {g.story.slice(1).map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
@@ -143,36 +143,36 @@ function GraniteDetail() {
       </section>
 
       {/* ── Project image ── */}
-      <section className="pb-20 md:pb-28">
+      <section className="pb-12 md:pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="overflow-hidden rounded-sm">
-            <div className="aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9]">
+            <div className="aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9]">
               <img src={g.project} alt={`${g.name} in a project setting`} className="h-full w-full object-cover" />
             </div>
           </div>
-          <p className="mt-4 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
             In situ · {g.signature}
           </p>
         </div>
       </section>
 
       {/* ── Technical sheet ── */}
-      <section className="bg-beige py-20 md:py-28">
+      <section className="bg-beige py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid gap-12 md:grid-cols-12 lg:gap-20">
+          <div className="grid gap-8 md:grid-cols-12 lg:gap-12">
             <div className="md:col-span-5">
               <Eyebrow>Technical Sheet</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">Specifications.</h2>
-              <p className="mt-4 max-w-md text-muted-foreground">
+              <h2 className="mt-3 font-serif text-3xl text-ink md:text-4xl">Specifications.</h2>
+              <p className="mt-3 max-w-md text-muted-foreground">
                 Engineered to international standards. Full technical PDF and physical samples available on request.
               </p>
             </div>
             <div className="md:col-span-7">
               <dl className="divide-y divide-ink/10 border-y border-ink/10">
                 {g.specs.map((s) => (
-                  <div key={s.label} className="flex items-baseline justify-between gap-6 py-4">
+                  <div key={s.label} className="flex items-baseline justify-between gap-6 py-3">
                     <dt className="text-xs uppercase tracking-widest text-muted-foreground">{s.label}</dt>
-                    <dd className="font-serif text-lg text-ink md:text-xl">{s.value}</dd>
+                    <dd className="font-serif text-base text-ink md:text-lg">{s.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -182,8 +182,8 @@ function GraniteDetail() {
       </section>
 
       {/* ── Finishes / Sizes / Pairings ── */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-3 lg:px-12">
+      <section className="py-12 md:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 lg:px-12">
           <Detail title="Finishes">
             <div className="flex flex-wrap gap-2">
               {g.finishes.map((f) => (
@@ -202,33 +202,33 @@ function GraniteDetail() {
           </Detail>
           <Detail title="Pairs With">
             <p className="text-sm leading-relaxed text-muted-foreground">{g.pairings.join(" · ")}</p>
-            <p className="mt-6 font-serif italic text-ink">"{g.inspiration}"</p>
+            <p className="mt-4 font-serif italic text-ink">"{g.inspiration}"</p>
           </Detail>
         </div>
       </section>
 
       {/* ── Applications ── */}
-      <section className="bg-beige/50 py-20 md:py-28">
+      <section className="bg-beige/50 py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex items-end justify-between gap-6">
             <div>
               <Eyebrow>Applications</Eyebrow>
-              <h2 className="mt-4 font-serif text-3xl text-ink md:text-4xl">Where it lives.</h2>
+              <h2 className="mt-3 font-serif text-3xl text-ink md:text-4xl">Where it lives.</h2>
             </div>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {g.applications.map((a, i) => (
               <div key={a} className="group bg-background">
-                <div className="aspect-[4/5] overflow-hidden">
+                <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={i % 2 === 0 ? g.project : g.slab}
                     alt={a}
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="border border-t-0 border-ink/10 px-5 py-4">
+                <div className="border border-t-0 border-ink/10 px-4 py-3">
                   <div className="text-[10px] uppercase tracking-[0.25em] text-gold">0{i + 1}</div>
-                  <div className="mt-1 font-serif text-lg text-ink">{a}</div>
+                  <div className="mt-0.5 font-serif text-base text-ink">{a}</div>
                 </div>
               </div>
             ))}
@@ -238,7 +238,7 @@ function GraniteDetail() {
 
       {/* ── Prev / Next ── */}
       <section className="border-y border-ink/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-8 lg:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:px-12">
           <Link to="/products/granites/$slug" params={{ slug: prev.slug }} className="group flex items-center gap-3 md:gap-4">
             <ArrowLeft className="h-5 w-5 text-muted-foreground transition group-hover:-translate-x-1 group-hover:text-gold" />
             <div className="text-left">
@@ -268,7 +268,7 @@ function Detail({ title, children }: { title: string; children: React.ReactNode 
   return (
     <div>
       <div className="text-xs uppercase tracking-[0.25em] text-gold">{title}</div>
-      <div className="mt-5 border-t border-ink/10 pt-5">{children}</div>
+      <div className="mt-3 border-t border-ink/10 pt-4">{children}</div>
     </div>
   );
 }
